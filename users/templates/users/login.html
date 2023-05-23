@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      label {
+        margin-bottom: 0.5rem;
+      }
+
+      .input-group {
+        margin-bottom: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    {% extends 'core/main.html' %} {% block content %}
+
+    <div class="header-bar">
+      <h1>Login</h1>
+    </div>
+
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username..."
+            class="form-control"
+          />
+        </div>
+        <div class="input-group mb-2">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password..."
+            class="form-control"
+          />
+        </div>
+        <input class="button" type="submit" value="Login" />
+      </form>
+
+      {% for message in messages %}
+
+      <p id="messages">{{message}}</p>
+
+      {% endfor %}
+
+      <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+    </div>
+
+    {% endblock content %}
+  </body>
+</html>
